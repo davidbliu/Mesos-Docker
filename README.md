@@ -96,7 +96,7 @@ which keys to watch with environment variables
 # Architecture
 ![alt tag](comparisons/mesos-kub.png)
 
-## see DESIGN.md for specifics on how the system is architected
+## see <a href='DESIGN.md'>DESIGN.md</a> for specifics on how the system is architected
 
 # Demos
 
