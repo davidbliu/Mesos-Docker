@@ -48,7 +48,7 @@ an interface to etcd, has methods to store and retrieve information from etcd
 * register_container(service_name, encoded_labels, container_name, info):
 * deregister_container(service_name, encoded_labels, container_name):
 
-# Theseus
+# Theseus (container management framework)
 
 Theseus is a command line client that allows you to create, update, and remove groups. 
 it handles namespacing and generic scheduling processes like rolling updates.
