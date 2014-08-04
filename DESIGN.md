@@ -1,5 +1,13 @@
 # Architecture
 
+- [Service Discovery](#service-discovery)
+	- [etcd directory structure](#etcd-directory-structure)
+	- [etcd driver](#etcd-driver)
+- [Theseus (container management layer)](#theseus)
+- [Theory](#theory)
+	- [layers](#layers)
+	- [alternate design choices](#alternate-design-choices)
+
 <img src='/comparisons/mesos-kub.png'></img>
 
 # Concepts
@@ -48,7 +56,7 @@ an interface to etcd, has methods to store and retrieve information from etcd
 * register_container(service_name, encoded_labels, container_name, info):
 * deregister_container(service_name, encoded_labels, container_name):
 
-# Theseus (container management framework)
+# Theseus
 
 Theseus is a command line client that allows you to create, update, and remove groups. 
 it handles namespacing and generic scheduling processes like rolling updates.
