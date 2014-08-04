@@ -46,3 +46,9 @@ an interface to etcd, has methods to store and retrieve information from etcd
 * register_container(service_name, encoded_labels, container_name, info):
 * deregister_container(service_name, encoded_labels, container_name):
 
+# Theseus
+
+Theseus is a command line client that allows you to create, update, and remove groups. It also has a viewer
+
+__using the command line tool: __
+python orchestrator.py -f {{configuration_file_path}}
