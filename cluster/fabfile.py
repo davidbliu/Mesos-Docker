@@ -5,11 +5,12 @@ import re
 #
 # SET THESE TO YOUR VALUES
 #
-amazon_key = 'asdf'
-amazon_secret = 'asdf'
+amazon_key = 'AKIAJL3UT2ZV75SY42PA'
+amazon_secret = 'fwrys4u3GnB7rl9j2NAnG3xG4hzYW8Sh9NSchh0s'
 amazon_regions = ['us-west-1']
 keypair_location = '/home/david/dliukeypair.pem'
-mesos_master_host = '50.18.130.73'
+# mesos_master_host = '54.176.99.67'
+mesos_master_host = '54.193.154.204'
 
 
 def ec2_slave_instances():
@@ -108,6 +109,7 @@ def master():
 	#
 	sudo('curl -fL http://downloads.mesosphere.io/marathon/marathon_0.5.0-xcon2_noarch.deb -o /tmp/marathon.deb')
 	sudo('dpkg -i /tmp/marathon.deb')
+	sudo("sed -i 's/marathon/marathon --event_subscriber http_callback/g' /etc/init/marathon.conf")
 	#
 	# start master
 	#
@@ -118,14 +120,26 @@ def master():
 
 @parallel
 def cache_images():
-	sudo('docker pull 54.189.193.228:5000/flask')
-	sudo('docker pull 54.189.193.228:5000/haproxy')
-	sudo('docker pull 54.189.193.228:5000/cassandra')
-	sudo('docker pull davidbliu/kafka_processor_nossh')
-	sudo('docker pull 54.189.193.228:5000/zookeeper_processor')
+	# sudo('docker pull 54.189.193.228:5000/flask')
+	# sudo('docker pull 54.189.193.228:5000/haproxy')
+	# sudo('docker pull 54.189.193.228:5000/cassandra')
+	# sudo('docker pull davidbliu/kafka_processor_nossh')
+	# sudo('docker pull 54.189.193.228:5000/zookeeper_processor')
 	sudo('docker pull 54.189.193.228:5000/watcher')
 
+@parallel
+def setup_etcd():
+	sudo('docker pull 54.189.193.228:5000/etcd')
+	sudo('docker run -t -p 4001:4001 54.189.193.228:5000/etcd')
 
+@parallel
+def setup_subscriber():
+	sudo('sudo docker pull 54.189.193.228:5000/subscriber')
+	sudo('docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS='+mesos_master_host+' -e CONTAINER_HOST_PORT=5000 54.189.193.228:5000/subscriber')
+@parallel
+def setup_dadvisor():
+	sudo('sudo docker pull 54.189.193.228:5000/dadvisor')
+	sudo('docker run -name dadvisor -t -p 5555:5000 -v /sys/fs:/sys/fs 54.189.193.228:5000/dadvisor')
 @parallel
 def cadvisor():
 	sudo('docker run --volume=/var/run:/var/run:rw --volume=/sys/fs/cgroup/:/sys/fs/cgroup:ro --volume=/var/lib/docker/:/var/lib/docker:ro --publish=8080:8080 --detach=true google/cadvisor:latest')
@@ -141,3 +155,4 @@ def slave_main():
 def master_main():
 	mesos()
 	master()
+

@@ -1,3 +1,6 @@
 [submodule "Theseus"]
 	path = Theseus
 	url = git@git.autodesk.com:t-liuda/Theseus.git
+[submodule "tools/subscriber"]
+	path = tools/subscriber
+	url = git@git.autodesk.com:t-liuda/marathon-subscriber.git
