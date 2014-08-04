@@ -53,3 +53,5 @@ an interface to etcd, has methods to store and retrieve information from etcd
 Theseus is a command line client that allows you to create, update, and remove groups. 
 it handles namespacing and generic scheduling processes like rolling updates.
 It also has a viewer.
+
+# Theory
