@@ -1,5 +1,7 @@
 # Architecture
 
+<img src='/comparisons/mesos-kub.png'></img>
+
 # Concepts
 
 * __services__ like haproxy, ingestor, cassandra, etc..
