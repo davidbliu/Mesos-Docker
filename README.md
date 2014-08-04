@@ -37,8 +37,8 @@ in topology. generic methods link rolling upgrades with configurable wait interv
  * cd into cluster directory
  * place amazon key, secret, path to keypair, and master public ip in fabfile.py
  * launch ec2 instances. name master node "mesos-master" and slave nodes "mesos-slave"
- * run the command __fab master_env master_main__ to install and run mesos, marathon, etcd, subscriber on master
- * __fab slave_env slave_main__ to install and run mesos, deimos on slaves
+ * run the command `fab master_env master_main` to install and run mesos, marathon, etcd, subscriber on master
+ * `fab slave_env slave_main` to install and run mesos, deimos on slaves
 
 
 ### Setting up etcd service discovery
@@ -49,11 +49,11 @@ The subscriber is a lightweight flask app that recieves callbacks from marathon 
 * build and push etcd and subscriber images (can be found in docker-images directory)
 * run etcd
   * must map a host port to containers exposed port 4001 
-  * ex: docker run -p 4001:4001 54.189.193.228:5000/etcd
+  * ex: `docker run -p 4001:4001 54.189.193.228:5000/etcd`
 * run subscriber
   * expects environment variables for CONTAINER_HOST_ADDRESS and CONTAINER_HOST_PORT. These are the public ips of the host and the port that is mapped to container port 5000
   * also expects ETCD_HOST and MARATHON_HOST
-  * ex: docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS=54.184.184.23 -e CONTAINER_HOST_PORT=5000 54.189.193.228:5000/subscriber
+  * see README for marathon-subscriber for details
 
 ### Launching images
 Interface to mesos cluster is Theseus, a framework build on top of marathon
@@ -67,21 +67,21 @@ To be registered properly in etcd images __must expose ports__ they need to map 
 Images should also __include python-etcd__. An example of this is in docker-images/etcd-base
 
 Images can use the same convenience functions (same method names and signatures) implemented in maestro's guestutils by importing from guestutils.py inside a startup python script
-* get_environment_name
-* get_service_name
-* get_container_name
-* get_container_host_address
-* get_container_internal_address
-* get_port(name, default)
+* `get_environment_name`
+* `get_service_name`
+* `get_container_name`
+* `get_container_host_address`
+* `get_container_internal_address`
+* `get_port(name, default)`
  * returns exposed internal port number of named port
-* get_node_list(service, ports = [ port1, port2 ])
+* `get_node_list(service, ports = [ port1, port2 ])`
  * input: service name and optional list of port names
  * output: list of 'host_ip:port1:port2' ... where host_ip is instance host ip and ports are external ports
-* get_specific_port(service, container, port, default)
+* `get_specific_port(service, container, port, default)`
  * inputs: service, container_name (task_id passed in by marathon), port name
  * optional default value
  * output: exposed port
-* get_specific_exposed_port(service, container, port, default)
+* `get_specific_exposed_port(service, container, port, default)`
  * returns exposed port
 
 ### Receiving Updates
@@ -89,7 +89,7 @@ containers can be set up to recieve updates when certain services are modified. 
 which keys to watch with environment variables
 * how to recieve updates:
  * include watcher.py and watch_methods.py (just like guestutils)
- * set WATCHES=service1,service2,service3 environment variable (comma separated list of services to watch)
+ * set `WATCHES=service1,service2,service3` environment variable (comma separated list of services to watch)
  * watcher.py will watch those keys in etcd and run the custom method in watch_methods.py
  * implement watch_methods.py to respond appropriately to changes recieved from etcd
 
