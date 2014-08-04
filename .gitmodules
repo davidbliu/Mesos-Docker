@@ -4,3 +4,6 @@
 [submodule "tools/subscriber"]
 	path = tools/subscriber
 	url = git@git.autodesk.com:t-liuda/marathon-subscriber.git
+[submodule "tools/dadvisor"]
+	path = tools/dadvisor
+	url = git@git.autodesk.com:t-liuda/dadvisor.git
