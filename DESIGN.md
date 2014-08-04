@@ -55,3 +55,50 @@ it handles namespacing and generic scheduling processes like rolling updates.
 It also has a viewer.
 
 # Theory
+
+### Layers
+* workstation
+  * developer provides declarative configuration for applications
+  * environment variables, ports, labels, constraints, image name, instances, cpu, mem, etc
+* marathon framework (theseus)
+  * organizes and manages services deployed (what is deployed where, what ports, what configuration, etc)
+  * allow user to see what is deployed, can filter by labels (like cassandra testing)
+  * basic container metrics and logs are collected in one place
+  * basic scheduling routines: rolling restart service with configurable wait time, constraints for which hosts to deploy onto, etc
+* mesos master and marathon
+  * recieves apps and tasks from theseus and ensures they remain running
+  * publish information to subscriber -> etcd
+* mesos-slave machine
+  * makes resource offers, recieves tasks from mesos master, executes them
+  * basic logging and metrics for containers running on it 
+  * should be a "container-optimized machine". it is configured to run containers -> and monitor them and report how they are doing
+* deimos and docker
+  * run the container
+  * containers recieve topology from etcd
+  * containers watch etcd for updates
+
+__application configuration:__ interfaces with cluster manager. what and how many to deploy. some constraints like deploy only on large vms and all containers on unique hosts etc
+
+__cluster manager:__ know what is deployed where, can monitor slaves, resources and performance aware (knows what resources are
+available and what services/containers are stressed
+
+__slave node:__ know about processes running on itself, monitor cpu memory network etc, logs -> ship to cluster manager
+
+__application:__ only needs to care about itself (what to do with endpoints of other services, 
+what to do when endpoints of other services change, how to shut down gracefully (ex when sigterm sent to it etc))
+
+
+### Alternate design choices
+* who updates configuration in etcd?
+ * current: subscriber to marathon
+ * process running on slave to check
+ * container
+* who records metrics
+ * current: container
+ * process running on slave
+* who holds logs/debug information
+ * current: container
+ * process running on slave
+* who holds record of what commands given to management framework (container config etc)?
+ * current: container management framework
+ * etcd (could have a directory for config and a directory for enpoint info)
