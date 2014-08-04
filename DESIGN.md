@@ -48,7 +48,6 @@ an interface to etcd, has methods to store and retrieve information from etcd
 
 # Theseus
 
-Theseus is a command line client that allows you to create, update, and remove groups. It also has a viewer
-
-__using the command line tool: __
-python orchestrator.py -f {{configuration_file_path}}
+Theseus is a command line client that allows you to create, update, and remove groups. 
+it handles namespacing and generic scheduling processes like rolling updates.
+It also has a viewer.
