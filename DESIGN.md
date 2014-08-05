@@ -3,6 +3,8 @@
 - [Service Discovery](#service-discovery)
 	- [etcd directory structure](#etcd-directory-structure)
 	- [etcd driver](#etcd-driver)
+	- [subscriber](#subscriber)
+	- [container level tools](#container-level-tools)
 - [Theseus (container management layer)](#theseus)
 - [Theory](#theory)
 	- [layers](#layers)
@@ -55,6 +57,24 @@ an interface to etcd, has methods to store and retrieve information from etcd
 * set_container_info(service_name, encoded_labels, container_name, info):
 * register_container(service_name, encoded_labels, container_name, info):
 * deregister_container(service_name, encoded_labels, container_name):
+
+### Subscriber
+
+a Marathon subscriber maintains configuration in etcd. This is done by interfacing with marathon's event bus. after running marathon
+on your mesos master, setup the subscriber. the subscriber registers a callback url with marathon and then recieves events
+when tasks are started or killed. from the marathon event, the subscriber updates etcd with what services and groups have containers
+running and what hosts and ports they are run on
+
+__in progress:__ the subscriber is currently coupled with marathon since it updates etcd configuration based on what marathon says is running.
+a better architecture may be to place subscribers on each mesos slave to monitor the containers running on that slave and report configuration 
+to etcd. This decouples the subscriber from marathon.
+
+### Container-level tools
+
+__guestutils__
+
+__watch_methods__
+
 
 # Theseus
 
