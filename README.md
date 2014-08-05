@@ -98,7 +98,7 @@ which keys to watch with environment variables
 ![alt tag](comparisons/mesos-kub.png)
 
 ## see <a href='DESIGN.md'>DESIGN.md</a> for specifics on how the system is architected
-the components that make up this system are: mesos-master (marathon, mesos), mesos-slave (deimos, mesos), subscriber, etcd, and theseus.
+the components that make up this system are: `mesos-master` (`marathon`, `mesos`), `mesos-slave` (`deimos`, `mesos`), `subscriber`, `etcd`, and `theseus`.
 to see the details of how these interact with each other, see <a href='DESIGN.md'>the design document</a>.
 
 # Demos
