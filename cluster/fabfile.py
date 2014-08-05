@@ -10,12 +10,14 @@ amazon_secret = 'fwrys4u3GnB7rl9j2NAnG3xG4hzYW8Sh9NSchh0s'
 amazon_regions = ['us-west-1']
 keypair_location = '/home/david/dliukeypair.pem'
 # mesos_master_host = '54.176.99.67'
-mesos_master_host = '54.193.154.204'
+# mesos_master_host = '54.193.154.204'
+# mesos_master_host = '54.219.38.171'
+mesos_master_host = '54.193.223.125'
 
 
 def ec2_slave_instances():
     tags = EC2TagManager(amazon_key, amazon_secret, regions= amazon_regions, common_tags={'Name': 'mesos-slave'})
-    return tags.get_instances()
+    return tags.get_instances()s
 
 def ec2_master_instances():
 	tags = EC2TagManager(amazon_key, amazon_secret, regions = amazon_regions, common_tags = {'Name':'mesos-master'})
@@ -130,12 +132,12 @@ def cache_images():
 @parallel
 def setup_etcd():
 	sudo('docker pull 54.189.193.228:5000/etcd')
-	sudo('docker run -t -p 4001:4001 54.189.193.228:5000/etcd')
+	sudo('docker run -d -p 4001:4001 54.189.193.228:5000/etcd')
 
 @parallel
 def setup_subscriber():
 	sudo('sudo docker pull 54.189.193.228:5000/subscriber')
-	sudo('docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS='+mesos_master_host+' -e CONTAINER_HOST_PORT=5000 54.189.193.228:5000/subscriber')
+	sudo('docker run -d -p 5000:5000 -e ETCD_HOST_ADDRESS='+mesos_master_host+' -e MARATHON_HOST='+mesos_master_host+' -e CONTAINER_HOST_ADDRESS='+mesos_master_host+' -e CONTAINER_HOST_PORT=5000 54.189.193.228:5000/subscriber')
 @parallel
 def setup_dadvisor():
 	sudo('sudo docker pull 54.189.193.228:5000/dadvisor')
@@ -155,4 +157,6 @@ def slave_main():
 def master_main():
 	mesos()
 	master()
+	setup_etcd()
+	setup_subscriber()
 
