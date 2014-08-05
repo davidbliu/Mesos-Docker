@@ -14,9 +14,9 @@
 
 # Concepts
 
-* __services__ like haproxy, ingestor, cassandra, etc..
+* __services__ like `haproxy`, `ingestor`, `cassandra`, etc..
 * __labeled groups__ identified by belonging to a __service__ and having a unique set of labels 
-	* ex: ['dev','frontend'] 
+	* ex: `['dev','frontend']` 
 
 # Service Discovery
 
