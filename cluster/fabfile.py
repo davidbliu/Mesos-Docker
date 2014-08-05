@@ -9,15 +9,14 @@ amazon_key = 'AKIAJL3UT2ZV75SY42PA'
 amazon_secret = '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'
 amazon_regions = ['us-west-1']
 keypair_location = '/home/david/dliukeypair.pem'
-# mesos_master_host = '54.176.99.67'
-# mesos_master_host = '54.193.154.204'
-# mesos_master_host = '54.219.38.171'
-mesos_master_host = '54.193.223.125'
-
+mesos_master_host = '50.18.90.238'
+#
+# end of your values 
+#
 
 def ec2_slave_instances():
     tags = EC2TagManager(amazon_key, amazon_secret, regions= amazon_regions, common_tags={'Name': 'mesos-slave'})
-    return tags.get_instances()s
+    return tags.get_instances()
 
 def ec2_master_instances():
 	tags = EC2TagManager(amazon_key, amazon_secret, regions = amazon_regions, common_tags = {'Name':'mesos-master'})
