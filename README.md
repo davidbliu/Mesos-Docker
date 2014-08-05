@@ -62,6 +62,26 @@ Interface to mesos cluster is Theseus, a framework build on top of marathon
 * namespacing: organizes deployments by service and labels
 * manages apps and tasks in marathon and their configuration
 
+as a developer, you only need to provide declarative specification on how you would like your image launched. here is an example. 
+for more details see <a href='https://git.autodesk.com/t-liuda/Theseus'>this link</a>
+
+```yaml
+deploy:
+  ingestor:
+    image: 54.189.193.228:5000/flask
+    ports: 
+      ssh: 22
+      api: 5000
+    environment:
+      APP_NAME: Ingestor
+      KEYSPACE_NAME: 'flask_keyspace2'
+      TABLE_NAME: 'flask_table2'
+    instances: 4
+    cpus: 0.1 
+    mem: 128
+    labels: ['dev']
+```
+
 ### Guestutils
 
 To be registered properly in etcd images __must expose ports__ they need to map to host ports (explicit EXPOSE port1 port2... in Dockerfile)
