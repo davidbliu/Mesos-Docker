@@ -71,9 +71,16 @@ to etcd. This decouples the subscriber from marathon.
 
 ### Container-level tools
 
-__guestutils__
+containers interface with the service discovery system with __guestutils__ and __watch_methods__. guestutils provides methods to pull configuration
+information from etcd while watch_methods provides a way to write pluggable methods and recieve notifications pushed from etcd
+when services change. 
 
-__watch_methods__
+__guestutils:__ see main README for guestutils methods
+
+__watch_methods:__ see getting started section of main README for how to write pluggable methods.
+watch_methods is called from within watcher.py, which recieves notifications from etcd via watching keys. containers can 
+select which keys to watch through the `WATCHES` environment variable. `WATCHES` should be a comma-separated string of the 
+services that you want to watch.
 
 
 # Theseus
@@ -81,6 +88,13 @@ __watch_methods__
 Theseus is a command line client that allows you to create, update, and remove groups. 
 it handles namespacing and generic scheduling processes like rolling updates.
 It also has a viewer.
+
+__motivation for theseus:__ marathon is not the ideal container-friendly interface for deploying and organizing dockerized applications.
+it has concepts of apps and tasks but doesn't explicitly support services and groups. Therefore, a lightweight framework on top of marathon
+to handle these tasks provides a robust way to manage docker containers. Since marathon is in flux and will soon accommodate namespacing 
+and even scheduling tasks like rolling updates, this framework is even more crucial. instead of changing how developers interface with marathon
+you can simply update your framework (theseus) according to the changes in marathon. this allows you to keep the interface
+to your cluster the same even with changes to marathon.
 
 # Theory
 
