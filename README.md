@@ -94,6 +94,14 @@ which keys to watch with environment variables
  * watcher.py will watch those keys in etcd and run the custom method in watch_methods.py
  * implement watch_methods.py to respond appropriately to changes recieved from etcd
 
+here is an example of how you can implement the pluggable method `service_change(service, delta)`
+
+```python
+def service_change(service, delta):
+	print 'service has changed: '+str(service)
+	print '\t'+'delta is '+str(delta)
+```
+
 # Architecture
 ![alt tag](comparisons/mesos-kub.png)
 
