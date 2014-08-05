@@ -58,7 +58,7 @@ The subscriber is a lightweight flask app that recieves callbacks from marathon 
 
 ### Launching images
 Interface to mesos cluster is Theseus, a framework build on top of marathon
-* see theseus readme for more information
+* see <a href = '/Theseus/README.md'>theseus readme</a> for more information
 * namespacing: organizes deployments by service and labels
 * manages apps and tasks in marathon and their configuration
 
