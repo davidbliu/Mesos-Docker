@@ -143,6 +143,7 @@ to see the details of how these interact with each other, see <a href='DESIGN.md
 
 here are some features that would improve this system
 
+### features
 * finer control over containers
  * restart containers on same slave
  * in event of hardware failure, checkpoint task -> restart this task
@@ -158,3 +159,9 @@ here are some features that would improve this system
  * rethink etcd directory structure?
  * executor changes?
  * some theseus modifications idk
+* aggregate information from all layers into one place
+ * one place to view whats running, whats where, slaves, logs, metrics, status, signals, etc
+
+### operational
+* security
+* logs (not for containers but for system itself)
