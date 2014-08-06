@@ -144,6 +144,7 @@ to see the details of how these interact with each other, see <a href='DESIGN.md
 here are some features that would improve this system
 
 ### features
+* flesh out REST interface
 * finer control over containers
  * restart containers on same slave
  * in event of hardware failure, checkpoint task -> restart this task
