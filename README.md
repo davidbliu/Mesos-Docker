@@ -18,7 +18,7 @@ without having to manually manage the cluter nodes themselves.
 	- [Receiving Updates](#receiving-updates)
 	- [Known Bugs](#known-bugs)
 - [Architecture](#architecture)
-- [Wishlist/Backlog](#wishlist)
+- [Wishlist/Backlog](#wishlist/backlog)
 
 
 # Getting started
@@ -139,7 +139,7 @@ def service_change(service, delta):
 the components that make up this system are: `mesos-master` (`marathon`, `mesos`), `mesos-slave` (`deimos`, `mesos`), `subscriber`, `etcd`, and `theseus`.
 to see the details of how these interact with each other, see <a href='DESIGN.md'>the design document</a>.
 
-# Wishlist
+# Wishlist/Backlog
 
 here are some features that would improve this system
 
