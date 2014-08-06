@@ -16,6 +16,7 @@ without having to manually manage the cluter nodes themselves.
 	- [Launching images](#launching-images)
 	- [Guestutils](#guestutils)
 	- [Receiving Updates](#receiving-updates)
+	- [Known Bugs](#known-bugs)
 - [Architecture](#architecture)
 - [Wishlist/Backlog](#wishlist)
 
