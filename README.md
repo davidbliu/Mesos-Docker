@@ -1,14 +1,10 @@
 Mesos-Docker-Orchestrator
 =========================
 
-this tool is composed of many separate components which are added into this repo as submodules
+_this tool is composed of many separate components which are added into this repo as submodules_
 
-container __cluster management__ with mesos and docker. enables users to run their containers on a cluster without having to manage specific machines and ports.
-tool supports labeling and naming services to allow easy queries for specific containers. 
-
-the mesos-docker orchestration tool has many pluggable components to allow customizable behavior for each application.
-for example there are convenience methods for reading topology and pluggable user-defined methods for responding to changes
-in topology. generic methods link rolling upgrades with configurable wait interval also provided.
+This is a __cluster management__ tool using mesos and docker, it enables users to run their containers on a cluster 
+without having to manually manage the cluter nodes themselves.
 
 # Table of contents
 
