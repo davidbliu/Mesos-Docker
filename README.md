@@ -154,5 +154,7 @@ here are some features that would improve this system
  * performance metrics
 * complex signals between containers?
  * ex: before a cassandra node goes down it needs to tell other nodes so they can replicate data 
+ * ex: graceful shutdown container
  * rethink etcd directory structure?
  * executor changes?
+ * some theseus modifications idk
