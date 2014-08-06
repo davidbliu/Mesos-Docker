@@ -142,3 +142,17 @@ to see the details of how these interact with each other, see <a href='DESIGN.md
 # Wishlist
 
 here are some features that would improve this system
+
+* finer control over containers
+ * restart containers on same slave
+ * in event of hardware failure, checkpoint task -> restart this task
+ * actual docker links
+ * pods
+ * __how to implement this:__ requires further modification of executor. some changes in theseus as well (adding custom  constraints)
+* monitoring/convenience tasks running on slave host
+ * log rolling
+ * performance metrics
+* complex signals between containers?
+ * ex: before a cassandra node goes down it needs to tell other nodes so they can replicate data 
+ * rethink etcd directory structure?
+ * executor changes?
