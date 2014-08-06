@@ -127,6 +127,7 @@ def service_change(service, delta):
 
 :_( unfortunately some bugs do exist
 * sometimes subscriber becomes out of sync
+ * here is what to do when that happens:
  * sent request to {{subscriber_host}}:{{subscriber_port}}/cleanup
  * subscriber will re-sync
  
