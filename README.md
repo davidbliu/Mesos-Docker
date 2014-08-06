@@ -160,6 +160,7 @@ here are some features that would improve this system
  * rethink etcd directory structure?
  * executor changes?
  * some theseus modifications idk
+* smarter-scheduling
 * aggregate information from all layers into one place
  * one place to view whats running, whats where, slaves, logs, metrics, status, signals, etc
 
