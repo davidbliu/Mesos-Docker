@@ -40,6 +40,8 @@ in topology. generic methods link rolling upgrades with configurable wait interv
  * launch ec2 instances. name master node "mesos-master" and slave nodes "mesos-slave"
  * run the command `fab master_env master_main` to install and run mesos, marathon, etcd, subscriber on master
  * `fab slave_env slave_main` to install and run mesos, deimos on slaves
+* dependencies
+ * fabric-ec2
 
 
 ### Setting up etcd service discovery
@@ -52,8 +54,8 @@ The subscriber is a lightweight flask app that recieves callbacks from marathon 
   * must map a host port to containers exposed port 4001 
   * ex: `docker run -p 4001:4001 54.189.193.228:5000/etcd`
 * run subscriber
-  * expects environment variables for CONTAINER_HOST_ADDRESS and CONTAINER_HOST_PORT. These are the public ips of the host and the port that is mapped to container port 5000
-  * also expects ETCD_HOST and MARATHON_HOST
+  * expects environment variables for `CONTAINER_HOST_ADDRESS` and `CONTAINER_HOST_PORT`. These are the public ips of the host and the port that is mapped to container port 5000
+  * also expects `ETCD_HOST` and `MARATHON_HOST`
   * see README for marathon-subscriber for details
 
 ### Launching images
@@ -84,7 +86,7 @@ deploy:
 
 ### Guestutils
 
-To be registered properly in etcd images __must expose ports__ they need to map to host ports (explicit EXPOSE port1 port2... in Dockerfile)
+To be registered properly in etcd images __must expose ports__ they need to map to host ports (explicit `EXPOSE port1 port2`... in Dockerfile)
 Images should also __include python-etcd__. An example of this is in docker-images/etcd-base
 
 Images can use the same convenience functions (same method names and signatures) implemented in maestro's guestutils by importing from guestutils.py inside a startup python script
@@ -137,8 +139,8 @@ to see the details of how these interact with each other, see <a href='DESIGN.md
  * marathon: http://54.188.87.91:8080/
 * etcd already running
 * run subscriber on ec2 instance
- * ssh -i helloworld.pem ec2-user@ec2-54-184-184-23.us-west-2.compute.amazonaws.com
- * docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS=54.184.184.23 -e CONTAINER_HOST_PORT=5000 -v /home/ec2-user/docker-data:/opt/data 54.189.193.228:5000/subscriber
+ * `ssh -i helloworld.pem ec2-user@ec2-54-184-184-23.us-west-2.compute.amazonaws.com`
+ * `docker run -t -p 5000:5000 -e CONTAINER_HOST_ADDRESS=54.184.184.23 -e CONTAINER_HOST_PORT=5000 -v /home/ec2-user/docker-data:/opt/data 54.189.193.228:5000/subscriber`
  * see container info: http://54.184.184.23:5000/info
 * what changes made to images?
  * import a different guestutils file, install python-etcd, explicitly expose ports in Dockerfile
@@ -147,7 +149,7 @@ to see the details of how these interact with each other, see <a href='DESIGN.md
  * kafka
  * processor
  * send curl request to processor 
- * curl -d raw={"hi"} {{ processor_host }}:{{ processor_port }}/ -i
+ * `curl -d raw={"hi"} {{ processor_host }}:{{ processor_port }}/ -i`
 * remove services except cassandra
 * run cassandra-tester populate to create 100 records in keyspace
 * run cassandra-tester test to read from keyspace
@@ -158,7 +160,7 @@ to see the details of how these interact with each other, see <a href='DESIGN.md
 * send cleanup signal to previous two nodes
  * observe key repartition
  * ssh in and see:
- * ssh -p 22000 container@{{ host_ip }}
+ * `ssh -p 22000 container@{{ host_ip }}`
 * comparisons between orchestration tools on github
 
 ### Sprint 2 demo
@@ -176,8 +178,6 @@ __demo goals:__
 show basic scheduling tasks
 show organization benefits of framework
 show monitoring, logging features/responsibilities of mesos-docker tool
-
-ssh -i dliukeypair.pem ubuntu@ec2-54-176-99-67.us-west-1.compute.amazonaws.com
 
 1. __architecture__
   * diagram - separation of concerns - what is responsible for what
