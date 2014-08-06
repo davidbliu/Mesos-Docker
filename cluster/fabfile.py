@@ -1,18 +1,17 @@
 from fabric.api import *
 from fabric_ec2 import EC2TagManager
 import re
+import yaml
+import os
 
-#
-# SET THESE TO YOUR VALUES
-#
-amazon_key = 'AKIAJL3UT2ZV75SY42PA'
-amazon_secret = 'fwrys4u3GnB7rl9j2NAnG3xG4hzYW8Sh9NSchh0s'
-amazon_regions = ['us-west-1']
-keypair_location = '/home/david/dliukeypair.pem'
-mesos_master_host = '50.18.90.238'
-#
-# end of your values 
-#
+data = yaml.load(open('config.yaml', 'r'))
+
+amazon_key = data['amazon_key']
+amazon_secret = data['amazon_secret'] 
+amazon_regions = data['amazon_regions']
+keypair_location = data['keypair_path']
+mesos_master_host = data['mesos_master_host']
+
 
 def ec2_slave_instances():
     tags = EC2TagManager(amazon_key, amazon_secret, regions= amazon_regions, common_tags={'Name': 'mesos-slave'})
