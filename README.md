@@ -41,6 +41,8 @@ in topology. generic methods link rolling upgrades with configurable wait interv
  * run the command `fab master_env master_main` to install and run mesos, marathon, etcd, subscriber on master
  * `fab slave_env slave_main` to install and run mesos, deimos on slaves
  * run `python setup_theseus.py` to setup theseus on your workstation
+* __test it!__
+  * `curl -X POST -H "Content-Type: application/json" localhost:5000/deploy -d@test.json`
 * dependencies
  * fabric-ec2
 
