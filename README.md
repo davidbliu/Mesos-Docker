@@ -21,6 +21,7 @@ in topology. generic methods link rolling upgrades with configurable wait interv
 	- [Guestutils](#guestutils)
 	- [Receiving Updates](#receiving-updates)
 - [Architecture](#architecture)
+- [Wishlist/Backlog](#wishlist)
 - [Demos](#demos)
 	- [Sprint 1 Demo (old)](#sprint-1-demo-old)
 	- [Sprint 2 Demo](#sprint-2-demo)
@@ -165,6 +166,10 @@ to see the details of how these interact with each other, see <a href='DESIGN.md
  * ssh in and see:
  * `ssh -p 22000 container@{{ host_ip }}`
 * comparisons between orchestration tools on github
+
+# Wishlist
+
+here are some features that would improve this system
 
 ### Sprint 2 demo
 
