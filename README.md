@@ -126,6 +126,14 @@ def service_change(service, delta):
 	print '\t'+'delta is '+str(delta)
 ```
 
+### Known Bugs
+
+:_( unfortunately some bugs do exist
+* sometimes subscriber becomes out of sync
+ * sent request to {{subscriber_host}}:{{subscriber_port}}/cleanup
+ * subscriber will re-sync
+ 
+
 # Architecture
 ![alt tag](comparisons/mesos-kub.png)
 
