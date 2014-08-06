@@ -10,7 +10,10 @@
       "mem": 128,
       "labels": [
         "monkey"
-      ]
+      ],
+      "environment": {
+        "WATCHES": "ingestor,tester"
+      }
     }
   }
 }

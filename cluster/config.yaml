@@ -9,4 +9,4 @@ keypair_path: '/home/david/dliukeypair.pem'
 #
 # mesos stuff
 #
-mesos_master_host: '50.18.102.249'
+mesos_master_host: '50.18.90.238'
