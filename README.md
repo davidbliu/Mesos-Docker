@@ -18,7 +18,7 @@ without having to manually manage the cluter nodes themselves.
 	- [Receiving Updates](#receiving-updates)
 	- [Known Bugs](#known-bugs)
 - [Architecture](#architecture)
-- [Wishlist/Backlog](#wishlist/backlog)
+- [Wishlist/Backlog](#wishlist-backlog)
 
 
 # Getting started
