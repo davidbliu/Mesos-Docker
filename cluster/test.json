@@ -1,0 +1,16 @@
+{
+  "deploy": {
+    "ingestor": {
+      "image": "54.189.193.228:5000/tester",
+      "ports": {
+        "ssh": 22
+      },
+      "instances": 3,
+      "cpus": 0.1,
+      "mem": 128,
+      "labels": [
+        "monkey"
+      ]
+    }
+  }
+}
