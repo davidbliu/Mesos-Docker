@@ -165,3 +165,6 @@ here are some features that would improve this system
 ### operational
 * security
 * logs (not for containers but for system itself)
+
+### refactoring
+* watching keys - subprocess stuff is inefficient
