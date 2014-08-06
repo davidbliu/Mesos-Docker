@@ -36,10 +36,11 @@ in topology. generic methods link rolling upgrades with configurable wait interv
  * setup and start slave nodes with modified deimos 
 * how to do it:
  * cd into cluster directory
- * place amazon key, secret, path to keypair, and master public ip in fabfile.py
+ * place amazon key, secret, path to keypair, and master public ip in config.yaml
  * launch ec2 instances. name master node "mesos-master" and slave nodes "mesos-slave"
  * run the command `fab master_env master_main` to install and run mesos, marathon, etcd, subscriber on master
  * `fab slave_env slave_main` to install and run mesos, deimos on slaves
+ * run `python setup_theseus.py` to setup theseus on your workstation
 * dependencies
  * fabric-ec2
 
