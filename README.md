@@ -40,6 +40,7 @@ without having to manually manage the cluster nodes themselves.
 * __test it!__
   * `curl -X POST -H "Content-Type: application/json" localhost:5000/deploy -d@test.json`
 * dependencies
+ * fabric
  * fabric-ec2
 
 
