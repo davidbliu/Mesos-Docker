@@ -40,7 +40,16 @@ without having to manually manage the cluter nodes themselves.
 * __test it!__
   * `curl -X POST -H "Content-Type: application/json" localhost:5000/deploy -d@test.json`
 * dependencies
+ * fabric
  * fabric-ec2
+
+ __cooler docker method__
+ * create slave nodes with name `slave-node` and master node with name `master-node`
+ * update config file with your information
+ * docker run -v {{config_directory}}:/opt/cluster 54.189.193.228:5000/fabric fab master_env master_main
+  * sets up master node
+* docker run -v {{config_directory}}:/opt/cluster 54.189.193.228:5000/fabric fab slave_env slave_main
+  * sets up slave nodes
 
 
 ### Setting up etcd service discovery
