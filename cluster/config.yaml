@@ -4,7 +4,7 @@
 amazon_key: 'AKIAJL3UT2ZV75SY42PA'
 amazon_secret: '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'
 amazon_regions: ['us-west-1']
-keypair_path: '/home/david/dliukeypair.pem'
+keypair_path: 'dliukeypair.pem'
 
 #
 # mesos stuff
