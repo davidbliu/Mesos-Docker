@@ -4,7 +4,7 @@ Mesos-Docker-Orchestrator
 _this tool is composed of many separate components which are added into this repo as submodules_
 
 This is a __cluster management__ tool using mesos and docker, it enables users to run their containers on a cluster 
-without having to manually manage the cluter nodes themselves.
+without having to manually manage the cluster nodes themselves.
 
 # Table of contents
 
