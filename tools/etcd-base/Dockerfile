@@ -10,6 +10,11 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 
 #
+# install git
+#
+RUN apt-get -y install git
+
+#
 # install python
 #
 RUN apt-get -y install python python-pip
@@ -17,8 +22,12 @@ RUN apt-get -y install python python-pip
 #
 # add python-etcd 
 #
-ADD . /opt/pyetcd
+# ADD . /opt/pyetcd
+# WORKDIR /opt/pyetcd/python-etcd
+WORKDIR /opt/pyetcd
+RUN git clone https://github.com/jplana/python-etcd.git
 WORKDIR /opt/pyetcd/python-etcd
+RUN python setup.py install
 
 #
 # install python-etcd dependencies
