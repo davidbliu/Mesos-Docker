@@ -44,8 +44,10 @@ without having to manually manage the cluster nodes themselves.
  * fabric-ec2
 
 __cooler docker method__
+* be a hip cool g-dawg homie man
 * create slave nodes with name `slave-node` and master node with name `master-node`
 * update config file with your information
+* place config.yaml (like example) and keypair in some directory.
 * `docker run -v {{config_directory}}:/opt/cluster 54.189.193.228:5000/fabric fab master_env` master_main
   * sets up master node
 * `docker run -v {{config_directory}}:/opt/cluster 54.189.193.228:5000/fabric fab slave_env slave_main`
