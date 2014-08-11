@@ -19,6 +19,7 @@ without having to manually manage the cluster nodes themselves.
 	- [Known Bugs](#known-bugs)
 - [Architecture](#architecture)
 - [Wishlist/Backlog](#wishlistbacklog)
+- [Contact](#contact)
 
 
 # Getting started
@@ -181,3 +182,7 @@ here are some features that would improve this system
 
 ### refactoring
 * watching keys - subprocess stuff is inefficient
+
+# Contact
+
+please reach me at davidbliu@gmail.com for more information
