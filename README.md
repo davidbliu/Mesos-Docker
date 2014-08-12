@@ -174,6 +174,7 @@ here are some features that would improve this system
  * executor changes?
  * some theseus modifications idk
 * smarter-scheduling
+ * is __scheduling policy__ the responsibility of another layer?
 * aggregate information from all layers into one place
  * one place to view whats running, whats where, slaves, logs, metrics, status, signals, etc
 
