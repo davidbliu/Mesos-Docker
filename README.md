@@ -157,7 +157,8 @@ here are some features that would improve this system
 
 ### features
 * flesh out REST interface
-* finer control over containers
+* finer control over containers 
+ * __placement constraints__
  * restart containers on same slave
  * in event of hardware failure, checkpoint task -> restart this task
  * actual docker links
