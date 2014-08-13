@@ -1,7 +1,24 @@
 # What is this?
 
 a collection of my research. may be outdated and/or inaccurate. no guarantees
+ 
+## Cluster management stuff
+__three types of scheduling architectures__ monolithic, two level, and shared state
 
+mesos is a two level scheduler. advantages: can run many different frameworks on top and have resource sharing between them.
+currently running a single framework (marathon) so not utilizing the scheduling aspect of mesos since offers only ever
+go to one framework.
+
+mesos disadvantage is resource hiding - offers are made to framework but they dont have global view of cluster. framework
+latency when deciding what to schedule means resources are tied up. usually used for many small tasks that end quickly
+not an ideal _service_ architecture. mesos assumes quick scheduling decisions, samll jobs, high resource churn. This 
+is not the case for service jobs.
+
+should have some sort of scheduling mechanism. This is perhaps something that each team (ex: CPAS) should implement
+
+__batch__ and __service__ jobs are different. they should have different scheduler?
+
+# Other
 ## Maestro
 <img src='maestro.png' height=500></img>
 
