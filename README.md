@@ -95,6 +95,11 @@ deploy:
     labels: ['dev']
 ```
 
+### Image Modifications for Service Discovery
+__quick start:__ images can be made to be extend mesos-base rather than ubuntu. In images, also include directory guestutils, which should contain `guestutils.py`,  `watcher.py`, `watch_methods.py`, and `etcd_driver.py`. to use guestutils simply import from the guestutils file (similar to importing from maestro guestutils). to use watch_methods, you must run `watcher.py` and set environment variable `WATCHES` to a comma-separated list of the services your image needs to watch. 
+
+__example:__ see example_mesos_image
+
 ### Guestutils
 
 To be registered properly in etcd images __must expose ports__ they need to map to host ports (explicit `EXPOSE port1 port2`... in Dockerfile)
@@ -120,7 +125,8 @@ Images can use the same convenience functions (same method names and signatures)
 
 ### Receiving Updates
 containers can be set up to recieve updates when certain services are modified. This is implemented through watching keys in etcd. you can set
-which keys to watch with environment variables
+which keys to watch with environment variables.
+for more detailed examples of how to use guestutils and watcher, see example_mesos_image
 * how to recieve updates:
  * include watcher.py and watch_methods.py (just like guestutils)
  * set `WATCHES=service1,service2,service3` environment variable (comma separated list of services to watch)
