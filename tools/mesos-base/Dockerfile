@@ -27,5 +27,10 @@ RUN apt-get -y install libffi-dev
 RUN apt-get -y install libssl-dev 
 RUN python setup.py install
 
-# add guestutils and watch functions
-ADD /guestutils /opt/mesos-guestutils
+# TODO: add guestutils and watch functions in base image
+# ADD /guestutils /opt/mesos-guestutils
+
+#
+# edit: guestutils and watch functions will be supplied in developers image
+#
+

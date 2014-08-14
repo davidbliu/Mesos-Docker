@@ -1,10 +1,22 @@
-import etcd
+#
+# we want watcher to startup only after container starts up, so wait for that to happen
+#
 import os
-import ast
 import time
+while True:
+	if os.environ.get('CONTAINER_HOST_ADDRESS') is None:
+		print 'container not started yet'
+		time.sleep(60)
+	else:
+		break
+
+
+import etcd
+import ast
 import threading
 import sys
 import etcd_driver
+
 etcd_host_address = os.environ['ETCD_HOST_ADDRESS'] 
 client = etcd.Client(host=etcd_host_address, port=4001, read_timeout = sys.maxint)
 
@@ -55,6 +67,7 @@ def watch_etcd_key(service, labels=[]):
 #
 # user defined function, pluggable
 # what procedure to invoke when services you depend on change
+# import watch methods here so they are modified based on user-submitted watch methods
 #			
 def service_change(service, delta):
 	try:
@@ -75,6 +88,8 @@ class ThreadClass(threading.Thread):
 		watch_etcd_key(service)
 		# except Exception as failure:
 			# print 'failed '+str(failure)
+
+
 #
 # spawns multiple threads to watch multiple keys
 #
@@ -85,13 +100,22 @@ def watch_keys(service_list):
 		t.daemon=True
 		t.start()
 
-# def start_watching():
-keys = os.environ.get('WATCHES')
-my_keys = keys.split(',')
-print 'starting to watch '+str(my_keys)
-watch_keys(my_keys)
-while True:
-	time.sleep(60)
-#
-# keep threads alive
-#
+def startup_watcher():
+	
+
+	keys = os.environ.get('WATCHES')
+	
+	if keys:
+		my_keys = keys.split(',')
+		print 'starting to watch '+str(my_keys)
+		watch_keys(my_keys)
+		#
+		# keep threads alive
+		#
+		while True:
+			time.sleep(60)
+	else:
+		print 'environment variable WATCHES not set, not watching anything...'
+
+
+startup_watcher()
