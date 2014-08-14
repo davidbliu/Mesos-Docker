@@ -7,14 +7,14 @@ This is a __cluster management__ tool using mesos and docker, it enables users t
 without having to manually manage the cluster nodes themselves.
 
 ## What's in this repo?
-* cluster
+* `cluster`
   * quick start scripts for setting up a mesos cluster
-* comparisons
+* `comparisons`
   * some research notes of different container management/orchestration technologies 
-* guestutils
+* `guestutils`
   * service discovery convenience functions
-* useless stuff just in case - useless stuff just in case
-* tools
+* `useless stuff just in case` - useless stuff just in case
+* `tools`
   * mesos base image
   * example image 
   * dadvisor - host-level container monitoring example
