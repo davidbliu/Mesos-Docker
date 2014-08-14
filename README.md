@@ -6,12 +6,14 @@ _this tool is composed of many separate components which are added into this rep
 This is a __cluster management__ tool using mesos and docker, it enables users to run their containers on a cluster 
 without having to manually manage the cluster nodes themselves.
 
-__directory overview__
+## What's in this repo?
 * cluster
   * quick start scripts for setting up a mesos cluster
 * comparisons
   * some research notes of different container management/orchestration technologies 
-* launcher - useless stuff
+* guestutils
+  * service discovery convenience functions
+* useless stuff just in case - useless stuff just in case
 * tools
   * mesos base image
   * example image 
