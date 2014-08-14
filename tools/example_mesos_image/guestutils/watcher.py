@@ -32,43 +32,33 @@ def watch_etcd_key(service, labels=[]):
 	#
 	# store previous value 
 	#'
-	# prev_dict = ast.literal_eval(client.read(watch_key).value)
 	prev_containers = etcd_driver.get_service_containers(service)
 	previous_value = len(prev_containers)
 	print 'previous value was '+str(previous_value)
 	current_value = previous_value
 	curr_containers = prev_containers
 	print 'started watching key '+ watch_key
-	# for event in client.eternal_watch(watch_key):
 	while True:
 		event = client.read(watch_key, recursive=True, wait=True, timeout=0)
 			#
 			# number of nodes has changed...
-			# node removed:
-			# node added:
-			# container shouldn't know anything else?
-			# how to restart cassandra? replace nodes one at a time?
 			#
-			# current_dictionary = ast.literal_eval(client.read(watch_key).value)
 		print 'watch key has changed>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 		current_containers = etcd_driver.get_service_containers(service)
 		curr = len(current_containers)
-		# if curr != 0:
 		previous_value = current_value
 		current_value = curr
 		prev_containers = curr_containers
 		curr_containers = current_containers
 		delta = current_value - previous_value
-		# print 'prev is '+str(previous_value)+' curr is '+str(current_value)+' delta is '+str(delta)
 		service_change(watch_key, delta)
-
 		print 'watching for next change...<<<<<<<<<<<<<<<<<<<<<<<<'
 			
 #
 # user defined function, pluggable
 # what procedure to invoke when services you depend on change
 # import watch methods here so they are modified based on user-submitted watch methods
-#			
+#
 def service_change(service, delta):
 	try:
 		import watch_methods 
@@ -83,15 +73,13 @@ class ThreadClass(threading.Thread):
 	def set_service(self, service):
 		self.service = service
 	def run(self):
-		# try:
 		service = self.service
 		watch_etcd_key(service)
-		# except Exception as failure:
-			# print 'failed '+str(failure)
 
 
 #
 # spawns multiple threads to watch multiple keys
+# TODO: think of cleaner/efficient-er way to do this
 #
 def watch_keys(service_list):
 	for service in service_list:
@@ -110,7 +98,7 @@ def startup_watcher():
 		print 'starting to watch '+str(my_keys)
 		watch_keys(my_keys)
 		#
-		# keep threads alive
+		# Main process: keep threads alive
 		#
 		while True:
 			time.sleep(60)

@@ -77,9 +77,6 @@ def set_group_config(service_name, encoded_labels, config):
 	etcd_client.write(group_key+'/config', config)
 
 def get_group_container_names(service_name, encoded_labels):
-	# if not service_exists(service_name) or not group_exists(service_name, encoded_labels):
-	# 	print 'one doesnt exist'
-	# 	return []
 	containers = []
 	containers_root_key = '/services/'+service_name+'/'+encoded_labels+'/containers'
 	if not containers_root_key in etcd_client:
@@ -119,13 +116,17 @@ def register_container(service_name, encoded_labels, container_name, info):
 	etcd_client.write(container_key+'/info', info)
 
 def deregister_container(service_name, encoded_labels, container_name):
-	# print 'im about to deregister your container'
-	# print encoded_labels
 	container_key = '/services/'+service_name+'/'+encoded_labels+'/containers/'+container_name
-	# print container_key
 	etcd_client.delete(container_key, recursive=True)
-	# print 'this does not /work'
 
+
+
+
+
+
+'''
+TEST CODE - dont mind me
+'''
 if __name__ == "__main__":
 
 	# create_service('test')
