@@ -7,7 +7,16 @@ This is a __cluster management__ tool using mesos and docker, it enables users t
 without having to manually manage the cluster nodes themselves.
 
 __directory overview__
-
+* cluster
+  * quick start scripts for setting up a mesos cluster
+* comparisons
+  * some research notes of different container management/orchestration technologies 
+* launcher - useless stuff
+* tools
+  * mesos base image
+  * example image 
+  * dadvisor - host-level container monitoring example
+  * subscriber (the subscriber to marathon that updates etcd config)
 
 
 # Table of contents
