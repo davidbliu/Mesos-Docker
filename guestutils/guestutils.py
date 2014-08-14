@@ -1,12 +1,10 @@
 import os
 import etcd
-import docker
 import ast
 import time
 import socket
 import etcd_driver
 from sets import Set
-# TODO replace hardcoded address
 
 """
 assumes that these env variables are passed into container.
@@ -14,10 +12,6 @@ SERVICE_NAME: the friendly name of the service the container is an instance of. 
 CONTAINER_NAME: the friendly name of the instance, which is also used as the name of the container itself. This will also be the visible hostname from inside the container.
 CONTAINER_HOST_ADDRESS: the external IP address of the host of the container. This can be used as the "advertised" address when services use dynamic service discovery techniques.
 """
-
-#
-# Wait for etcd config
-#
 
 def get_environment_name():
 	# returns the name of the environment as defined in the description file. Could be useful to namespace information inside ZooKeeper for example.
@@ -64,7 +58,6 @@ def get_node_list(service_name, ports=[], minimum=1, labels = []):
 						portlist = portlist + p
 					nodes.append(str(host + portlist))
 		except Exception as failure:
-			# print 'getting group labels failed '+str(failure)
 			print 'failed'
 			print failure
 	return nodes
@@ -103,6 +96,10 @@ def decode_marathon_id(marathon_id, id_separator = 'D.L'):
     version = str(id_split[2])
     return {'service':service_name, 'labels':labels, 'version':version}
 
+
+'''
+TEST CODE - dont mind me
+'''
 def small_test():
 	# print client.read("/services").children
 	# print etcd_driver.get_service_names()
