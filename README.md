@@ -6,6 +6,19 @@ _this tool is composed of many separate components which are added into this rep
 This is a __cluster management__ tool using mesos and docker, it enables users to run their containers on a cluster 
 without having to manually manage the cluster nodes themselves.
 
+__directory overview__
+* cluster
+  * quick start scripts for setting up a mesos cluster
+* comparisons
+  * some research notes of different container management/orchestration technologies 
+* launcher - useless stuff
+* tools
+  * mesos base image
+  * example image 
+  * dadvisor - host-level container monitoring example
+  * subscriber (the subscriber to marathon that updates etcd config)
+
+
 # Table of contents
 
 - [Overview](#mesos-docker-orchestrator)
@@ -14,6 +27,7 @@ without having to manually manage the cluster nodes themselves.
 	- [Setting up a mesos cluster](#setting-up-a-mesos-cluster)
 	- [Setting up etcd service discovery](#setting-up-etcd-service-discovery)
 	- [Launching images](#launching-images)
+	- [Image Modifications](#image-modifications-for-service-discovery)
 	- [Guestutils](#guestutils)
 	- [Receiving Updates](#receiving-updates)
 	- [Known Bugs](#known-bugs)
@@ -98,7 +112,7 @@ deploy:
 ### Image Modifications for Service Discovery
 __quick start:__ images can be made to be extend mesos-base rather than ubuntu. In images, also include directory guestutils, which should contain `guestutils.py`,  `watcher.py`, `watch_methods.py`, and `etcd_driver.py`. to use guestutils simply import from the guestutils file (similar to importing from maestro guestutils). to use watch_methods, you must run `watcher.py` and set environment variable `WATCHES` to a comma-separated list of the services your image needs to watch. 
 
-__example:__ see example_mesos_image
+__example:__ see `example_mesos_image` in the `tools` directory
 
 ### Guestutils
 
