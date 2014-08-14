@@ -1,0 +1,12 @@
+#
+# amazon stuff
+#
+amazon_key: 'AKIAJL3UT2ZV75SY42PA'
+amazon_secret: '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'
+amazon_regions: ['us-west-1']
+keypair_path: 'dliukeypair.pem'
+
+#
+# mesos stuff
+#
+mesos_master_host: '54.183.149.179'
