@@ -1,0 +1,12 @@
+#
+# amazon stuff
+#
+amazon_key: 'amazon-key'
+amazon_secret: 'amazon-secret'
+amazon_regions: ['us-west-1']
+keypair_path: 'path_to_keypair'
+
+#
+# mesos stuff
+#
+mesos_master_host: 'public ip of mesos-master'
