@@ -207,6 +207,11 @@ here are some features that would improve this system
 ### refactoring
 * watching keys - subprocess stuff is inefficient
 
+## Resources
+
+* __rendler__ is an example python mesos framework
+  * https://github.com/mesosphere/RENDLER
+
 # Contact
 
 please reach me at davidbliu@gmail.com for more information

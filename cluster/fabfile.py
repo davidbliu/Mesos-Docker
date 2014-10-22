@@ -14,11 +14,11 @@ mesos_master_host = data['mesos_master_host']
 
 
 def ec2_slave_instances():
-    tags = EC2TagManager(amazon_key, amazon_secret, regions= amazon_regions, common_tags={'Name': 'mesos-slave'})
+    tags = EC2TagManager(amazon_key, amazon_secret, regions= amazon_regions, common_tags={'Name': 'cassandra2'})
     return tags.get_instances()
 
 def ec2_master_instances():
-	tags = EC2TagManager(amazon_key, amazon_secret, regions = amazon_regions, common_tags = {'Name':'mesos-master'})
+	tags = EC2TagManager(amazon_key, amazon_secret, regions = amazon_regions, common_tags = {'Name':'cassandra1'})
 	return tags.get_instances()
 
 #
